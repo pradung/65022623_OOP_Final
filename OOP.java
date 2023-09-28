@@ -1,181 +1,121 @@
+// Interface Job
 interface Job {
-
-String getPosition();
-
-void setPosition(String position);
-
-String getEmpID();
-
-void setEmpID(String empID);
+  String getPosition();
+  void setPosition(String position);
+  String getEmpID();
+  void setEmpID(String empID);
 }
 
+// Interface Person
 interface Person {
-
-String getName();
-
-void setName(String name);
-
-int getAge();
-
-void setAge(int age);
+  String getName();
+  void setName(String name);
+  int getAge();
+  void setAge(int age);
 }
 
+// Class Employee
 class Employee implements Job, Person {
+  private String name;
+  private double age;
+  private String position;
+  private String empID;
+  private ArrayList<Project> myProject;
 
-private String name;
+  Employee() {
+    this.myProject = new ArrayList<>();
+  }
 
-private int age;
+  public String getName() {
+    return name;
+  }
 
-private String position;
+  public void setName(String name) {
+    this.name = name;
+  }
 
-private String empID;
+  public int getAge() {
+    return age;
+  }
 
-private ArrayList<Project> myProjects;
+  public void setAge(int age) {
+    this.age = age;
+  }
 
-public Employee(String name, int age, String position, String empID) {
+  public String getPosition() {
+    return position;
+  }
 
-this.name = name;
+  public void setPosition(String position) {
+    this.position = position;
+  }
 
-this.age = age;
+  public String getEmpID() {
+    return empID;
+  }
 
-this.position = position;
+  public void setEmpID(String empID) {
+    this.empID = empID;
+  }
 
-this.empID = empID;
+  public void AddProject(Project project) {
+    myProject.add(project);
+  }
 
-this.myProjects = new ArrayList<>();
-
+  public void ShowDetails() {
+    System.out.println("********************************");
+    System.out.println("Name: " + name);
+    System.out.println("position: " + position);
+    System.out.println("EmpID: " + empID);
+    System.out.println("Projects");
+    for (Project project : myProject) {
+      System.out.println(project.getProject());
+    }
+  }
 }
 
-@Override
-
-public String getPosition() {
-
-return position;
-
-}
-
-@Override
-
-public void setPosition(String position) {
-
-this.position = position;
-
-}
-
-@Override
-
-public String getEmpID() {
-
-return empID;
-
-}
-
-@Override
-
-public void setEmpID(String empID) {
-
-this.empID = empID;
-
-}
-
-@Override
-
-public String getName() {
-
-return name;
-
-}
-
-@Override
-
-public void setName(String name) {
-
-this.name = name;
-
-}
-
-@Override
-
-public int getAge() {
-
-return age;
-
-}
-
-@Override
-
-public void setAge(int age) {
-
-this.age = age;
-
-}
-
-public void addProject(Project project) {
-
-myProjects.add(project);
-
-}
-
-public void showDetails() {
-
-System.out.println("********************************");
-
-System.out.println("Name: " + name);
-
-System.out.println("position: " + position);
-
-System.out.println("EmpID: " + empID);
-
-System.out.println("Projects");
-
-for (Project project : myProjects) {
-
-System.out.println(project.getProject());
-
-}
-
-}
-}
-
+// Class Project
 class Project {
+  private String projectName;
+  private String description;
 
-private String projectName;
+  Project(String projectName, String description) {
+    this.projectName = projectName;
+    this.description = description;
+  }
 
-private String description;
-
-public Project(String projectName, String description) {
-
-this.projectName = projectName;
-
-this.description = description;
-
+  public String getProject() {
+    return projectName + ": " + description;
+  }
 }
 
-public String getProject() {
-
-return projectName + ": " + description;
-
-}
-}
-
+// Main
 public class Main {
+  public static void main(String[] args) {
+    // Create Employee objects
+    Employee tom = new Employee();
+    tom.setName("Tom");
+    tom.setAge(25);
+    tom.setPosition("UX/UI");
+    tom.setEmpID("0001");
 
-public static void main(String[] args) {
+    Employee tim = new Employee();
+    tim.setName("Tim");
+    tim.setAge(20);
+    tim.setPosition("FontEnd");
+    tim.setEmpID("0002");
 
-Employee tom = new Employee("Tom", 25, "UX/UI", "0001");
+    // Create Project objects
+    Project webA = new Project("Web A", "Developing a web application");
+    Project mobileA = new Project("Mobile app A", "Developing a mobile app");
 
-tom.addProject(new Project("Web A", "Developing a web application"));
+    // Add Projects to Employee objects
+    tom.AddProject(webA);
+    tom.AddProject(mobileA);
+    tim.AddProject(webA);
 
-tom.addProject(new Project("Mobile app A", "Developing a mobile app"));
-
-Employee tim = new Employee("Tim", 30, "FrontEnd", "0002");
-
-tim.addProject(new Project("Web A", "Developing a web application"));
-
-System.out.println(tom.showDetails());
-
-System.out.println(tim.showDetails());
-
-}
-
+    // Show details of Employee objects
+    tom.ShowDetails();
+    tim.ShowDetails();
+  }
 }
