@@ -1,4 +1,6 @@
-// Interface Job
+
+import java.util.ArrayList;
+
 interface Job {
   String getPosition();
   void setPosition(String position);
@@ -6,15 +8,13 @@ interface Job {
   void setEmpID(String empID);
 }
 
-// Interface Person
 interface Person {
-  String getName();
+  String getName() ;
   void setName(String name);
-  int getAge();
-  void setAge(int age);
-}
+  double getAge();
+  void setAge(int age) ;
+} 
 
-// Class Employee
 class Employee implements Job, Person {
   private String name;
   private double age;
@@ -25,35 +25,27 @@ class Employee implements Job, Person {
   Employee() {
     this.myProject = new ArrayList<>();
   }
-
   public String getName() {
     return name;
   }
-
   public void setName(String name) {
     this.name = name;
   }
-
-  public int getAge() {
+  public double getAge() {
     return age;
   }
-
   public void setAge(int age) {
     this.age = age;
   }
-
   public String getPosition() {
     return position;
   }
-
   public void setPosition(String position) {
     this.position = position;
   }
-
   public String getEmpID() {
     return empID;
   }
-
   public void setEmpID(String empID) {
     this.empID = empID;
   }
@@ -63,7 +55,7 @@ class Employee implements Job, Person {
   }
 
   public void ShowDetails() {
-    System.out.println("********************************");
+    System.out.println("***************************************");
     System.out.println("Name: " + name);
     System.out.println("position: " + position);
     System.out.println("EmpID: " + empID);
@@ -74,7 +66,6 @@ class Employee implements Job, Person {
   }
 }
 
-// Class Project
 class Project {
   private String projectName;
   private String description;
@@ -89,10 +80,10 @@ class Project {
   }
 }
 
-// Main
+
 public class Main {
   public static void main(String[] args) {
-    // Create Employee objects
+
     Employee tom = new Employee();
     tom.setName("Tom");
     tom.setAge(25);
@@ -105,16 +96,15 @@ public class Main {
     tim.setPosition("FontEnd");
     tim.setEmpID("0002");
 
-    // Create Project objects
-    Project webA = new Project("Web A", "Developing a web application");
-    Project mobileA = new Project("Mobile app A", "Developing a mobile app");
 
-    // Add Projects to Employee objects
+    Project webA = new Project("     Web A", "Developing a web application");
+    Project mobileA = new Project("     Mobile app A", "Developing a mobile app");
+
+
     tom.AddProject(webA);
     tom.AddProject(mobileA);
     tim.AddProject(webA);
 
-    // Show details of Employee objects
     tom.ShowDetails();
     tim.ShowDetails();
   }
